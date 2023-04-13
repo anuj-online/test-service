@@ -5,6 +5,8 @@ import com.anuj.testservice.repository.UserRepo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class TestController {
     private final UserRepo userRepo;
@@ -19,5 +21,10 @@ public class TestController {
         userEntity.setName(name);
         userRepo.save(userEntity);
         return String.format("Hello %s", name);
+    }
+
+    @GetMapping("/findAll")
+    public List<UserEntity> userEntities(){
+        return userRepo.findAll();
     }
 }
